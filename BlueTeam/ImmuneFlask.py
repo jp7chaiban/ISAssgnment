@@ -25,7 +25,7 @@ def block_method():
         if dict[ip_address] > threshold:  # and (dict[ip_address] < threshold + 10):
 
             line = "DDOS attack is Detected from " + ip_address + " with " + \
-                   str(dict[ip_address]) + " requests. \nBlocking access !"
+                   str(dict[ip_address]) + " requests. \nBlocking further access !"
             print(line)
 
             flask.abort(403)
