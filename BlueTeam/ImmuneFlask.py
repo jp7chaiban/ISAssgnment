@@ -6,8 +6,8 @@ import request
 dict = {}
 from datetime import datetime
 
-# file_txt = open("attack_DDoS.txt", 'a')
-threshold = 20
+
+threshold = 20  # max number of requests before being blocked
 app = flask.Flask(__name__)
 
 @app.before_request
@@ -24,9 +24,7 @@ def block_method():
 
             line = "DDOS attack is Detected from " + ip_address + " with " + str(dict[ip_address]) + " requests. \nBlocking access !"
             print(line)
-            '''file_txt.writelines(line)
-            file_txt.writelines(ip_address)
-            file_txt.writelines("\n")'''
+
             flask.abort(403)
     else:
         dict[ip_address] = 1
