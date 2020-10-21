@@ -10,8 +10,8 @@ def attack():
         s.connect(("127.0.0.1", 5000))  
         print ("GET /" + "127.0.0.1" + " HTTP/1.1")
         print ("\n")
-        s.send("GET /" + "127.0.0.1" + " HTTP/1.1\r\n")  
-        s.send("Host: " + "127.0.0.1"  + "\r\n\r\n");
+        s.send(b"GET /" + b"127.0.0.1" + b" HTTP/1.1\r\n")
+        s.send(b"Host: " + b"127.0.0.1"  + b"\r\n\r\n")
         s.close()
     except:
         print("Socket Dead.")
