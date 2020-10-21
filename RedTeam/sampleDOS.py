@@ -1,4 +1,6 @@
 # Sample DOS Attack
+#Reference: https://www.neuralnine.com/code-a-ddos-script-in-python/
+
 import socket, sys, os, threading, time
 print ("Attack localhost on port 5000")  
  
