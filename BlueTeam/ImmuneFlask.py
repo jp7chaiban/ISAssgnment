@@ -29,7 +29,8 @@ def block_method():
         print("Current Dict: ", nest_dict[ip_address]['requests'])
 
         print(nest_dict[ip_address]['requests'])
-        if nest_dict[ip_address]['time'] - t1 < 100:
+        print("Time since last request: ", t1 - nest_dict[ip_address]['time'])
+        if t1 - nest_dict[ip_address]['time'] < 100:
             if nest_dict[ip_address]['requests'] > threshold:  # and (nest_dict[ip_address] < threshold + 10):
                 line = "DDOS attack is Detected from " + ip_address + " with " + str(
                     nest_dict[ip_address]['requests']) + " requests. \nBlocking access !"
