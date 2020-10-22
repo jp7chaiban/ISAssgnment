@@ -5,11 +5,10 @@ import flask
 
 from scapy.all import *
 import struct
+
 # import request
 nest_dict = {}
 from datetime import datetime
-
-
 
 threshold = 20  # max number of requests before being blocked
 app = flask.Flask(__name__)
@@ -19,7 +18,7 @@ app = flask.Flask(__name__)
 def block_method():
     # ip_address = request.environ.get('REMOTE_ADDR')
     ip_address = flask.request.remote_addr
-    t1 = str(datetime.now())
+    t1 = time.time()
     # print("time: ", str(t1))
     print("Request from: ", ip_address)
     print("Access Route: ", flask.request.access_route)
@@ -28,25 +27,27 @@ def block_method():
     if ip_address in nest_dict:
         nest_dict[ip_address]['requests'] = nest_dict[ip_address]['requests'] + 1
         print("Current Dict: ", nest_dict[ip_address]['requests'])
-        nest_dict[ip_address]['time'] = t1
+
         print(nest_dict[ip_address]['requests'])
-        if nest_dict[ip_address]['time'] > 100:
+        if nest_dict[ip_address]['time'] - t1 < 100:
             if nest_dict[ip_address]['requests'] > threshold:  # and (nest_dict[ip_address] < threshold + 10):
-                line = "DDOS attack is Detected from " + ip_address + " with " + str(nest_dict[ip_address]['requests']) + " requests. \nBlocking access !"
+                line = "DDOS attack is Detected from " + ip_address + " with " + str(
+                    nest_dict[ip_address]['requests']) + " requests. \nBlocking access !"
                 print(line)
                 '''file_txt.writelines(line)
                 file_txt.writelines(ip_address)
                 file_txt.writelines("\n")'''
                 flask.abort(403)
-
-        else:
-            nest_dict[ip_address]['requests'] = 1
-            print("Updated Dict: ", dict)
+        nest_dict[ip_address]['time'] = t1
+    else:
+        nest_dict[ip_address] = {}
+        nest_dict[ip_address]['requests'] = 1
+        nest_dict[ip_address]['time'] = t1
+        print("Updated Dict: ", dict)
 
 
 @app.route('/')
 def hello():
-
     return "Hello {}!".format(flask.request.remote_addr)
 
 
