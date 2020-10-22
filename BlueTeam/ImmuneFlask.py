@@ -39,8 +39,8 @@ def block_method():
                 file_txt.writelines(ip_address)
                 file_txt.writelines("\n")'''
                 flask.abort(403)
-            else:
-                nest_dict[ip_address]['requests'] = 1
+        else:
+            nest_dict[ip_address]['requests'] = 1
         nest_dict[ip_address]['time'] = t1
     else:
         nest_dict[ip_address] = {}
