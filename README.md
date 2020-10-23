@@ -16,7 +16,7 @@ Internet Security Assignment
 8.	Go to “BlueTeam” directory (cd BlueTeam)
 9.	Two servers are available, one vulnerable to the attack and the other with counter measures:
 
-    a. To run the vulnerable server use : py VulnerableFlask.py (run ImmuneFlask.py)
+    a. To run the vulnerable server use : py VulnerableFlask.py (run VulnerableFlask.py)
 
     b. To run the updated server use: py ImmuneFlask.py (run ImmuneFlask.py)
 
