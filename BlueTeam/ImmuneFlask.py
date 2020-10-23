@@ -12,7 +12,8 @@ from datetime import datetime
 
 threshold = 20  # max number of requests before being blocked
 app = flask.Flask(__name__)
-
+def update_firewall(ip_address):
+    print("Firewall settings updated to ban: ", ip_address)
 
 @app.before_request
 def block_method():
@@ -38,6 +39,7 @@ def block_method():
                 '''file_txt.writelines(line)
                 file_txt.writelines(ip_address)
                 file_txt.writelines("\n")'''
+                update_firewall(ip_address)
                 flask.abort(403)
         else:
             nest_dict[ip_address]['requests'] = 1
