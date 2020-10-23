@@ -4,11 +4,11 @@
 import flask
 
 from scapy.all import *
-import struct
+# import struct  # unused
 
-# import request
+# import request  # unused
 nest_dict = {}
-from datetime import datetime
+# from datetime import datetime  # unused
 
 threshold = 20  # max number of requests before being blocked
 app = flask.Flask(__name__)
@@ -23,10 +23,10 @@ def update_firewall(ip_address, add):
 
 @app.before_request
 def block_method():
-    # ip_address = request.environ.get('REMOTE_ADDR')
+
     ip_address = flask.request.remote_addr
     t1 = time.time()
-    # print("time: ", str(t1))
+
     print("Request from: ", ip_address)
     print("Access Route: ", flask.request.access_route)
     print("Current Dict: ", nest_dict)
