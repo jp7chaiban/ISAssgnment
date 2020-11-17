@@ -1,5 +1,5 @@
 # ISAssgnment
-Internet Security Assignment
+This Project was an Internet Security Assignment. It involves a DOS SYN flood attack tool and a flask app with detection.
 
 ## **Instructions on how to run the programs:**
 
